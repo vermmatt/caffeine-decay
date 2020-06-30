@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Caffeine App</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <script>
+            var arrTime = [];
+            var arrData = [];
+            var caffeine = 100;
+
+
+            var time = new Date();
+            var month = Number(time.getMonth());
+            var day = Number(time.getDate());
+            var hours =  Number(time.getHours());
+
+
+            // loop through array
+            for(i=0; i < 24; i++){
+                //add hours
+                var obj = [];
+                if(hours<24){
+                    var timestamp = month.toString() + "-" + day.toString() + "-" + hours.toString()
+                    arrTime.push(timestamp);
+                    arrData.push(caffeine);
+                    hours++
+                    caffeine = caffeine * 0.89089;
+                } else {
+                    hours = 0;
+                    day += 1;
+                    var timestamp = month.toString() + "-" + day.toString() + "-" + hours.toString()
+                    arrTime.push(timestamp);
+                    arrData.push(caffeine);
+                    hours++;
+                    caffeine = caffeine * 0.89089;
+                };
+            }
+        </script>
+        <canvas id="myChart" width="400" height="400"></canvas>
+        <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: arrTime,
+                datasets: [{
+                    label: 'mg of Caffeine remaining',
+                    data: arrData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }] 
+                },
+                responsive: false
+            }
+        });
+        </script>
+        <script src="" async defer></script>
+    </body>
+</html>
