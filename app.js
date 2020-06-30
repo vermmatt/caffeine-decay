@@ -1,13 +1,3 @@
-//second test of Github commit
-// mongoose = require("mongoose");
-// mongoose.connect("mongodb://localhost:27017/restful_blog_app", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
-
-// var caffeineSchema = new mongoose.Schema({
-//     time: String,
-//     value: Number,
-// });
-// var Caffeine = mongoose.model("Caffeine", caffeineSchema);
-
 var arr = [];
 
 var caffeine = 100;
